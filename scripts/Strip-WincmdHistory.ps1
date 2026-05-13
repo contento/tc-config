@@ -34,15 +34,29 @@ $githubLightColors.Add('')
 
 $inHistory = $false
 $inColors  = $false
+$inLeft    = $false
+$inRight   = $false
 
 while ($null -ne ($line = [Console]::In.ReadLine())) {
-    # --- history sections: skip entirely ---
+    # --- history/personal sections: skip entirely ---
     if ($line -match $historyPattern) {
         $inHistory = $true
         continue
     }
     if ($inHistory -and $line -match '^\[') { $inHistory = $false }
     if ($inHistory) { continue }
+
+    # --- [left]/[right]: track section, normalise path= ---
+    if ($line -eq '[left]')  { $inLeft = $true;  $inRight = $false }
+    if ($line -eq '[right]') { $inRight = $true; $inLeft  = $false }
+    if ($line -match '^\[' -and $line -ne '[left]' -and $line -ne '[right]') {
+        $inLeft = $false; $inRight = $false
+    }
+    if ($line -match '^path=' -and ($inLeft -or $inRight)) {
+        if ($inLeft)  { [Console]::Out.WriteLine('path=%APPDATA%\GHISLER\') }
+        else          { [Console]::Out.WriteLine('path=%USERPROFILE%\scoop\apps\totalcommander\current\') }
+        continue
+    }
 
     # --- [Colors] section: replace with GitHub Light ---
     if ($line -eq '[Colors]') {
