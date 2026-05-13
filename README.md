@@ -21,14 +21,9 @@ Themes are switched via a PowerShell script that patches `WINCMD.INI` and restar
 
 ## Installation
 
-### Prerequisites
+**Prerequisite:** [Total Commander x64](https://www.ghisler.com/) — via [Scoop](https://scoop.sh/) or standalone.
 
-- [Total Commander x64](https://www.ghisler.com/) installed via [Scoop](https://scoop.sh/) or standalone
-- PowerShell 5.1+
-
-### Setup
-
-**1. Clone into `%APPDATA%\GHISLER`**
+**1. Clone into `$env:APPDATA\GHISLER`**
 
 ```powershell
 git clone https://github.com/contento/tc-config "$env:APPDATA\GHISLER"
@@ -45,20 +40,16 @@ git -C "$env:APPDATA\GHISLER" config filter.strip-tc-history.required true
 
 **3. Register TC user commands**
 
-Copy or merge `usercmd.ini` from this repo into:
-
-```text
-%USERPROFILE%\scoop\persist\totalcommander\usercmd.ini
-```
+Copy or merge `usercmd.ini` from this repo into `$env:USERPROFILE\scoop\persist\totalcommander\usercmd.ini`
+(or wherever your TC `usercmd.ini` lives).
 
 **4. Apply a theme**
 
 ```powershell
-# From %APPDATA%\GHISLER\themes\
-powershell -ExecutionPolicy Bypass -File Set-TCTheme.ps1 -Theme github -Mode light
-powershell -ExecutionPolicy Bypass -File Set-TCTheme.ps1 -Theme solarized -Mode dark
-powershell -ExecutionPolicy Bypass -File Set-TCTheme.ps1 -Theme rosepine -Mode dark
-powershell -ExecutionPolicy Bypass -File Set-TCTheme.ps1 -Theme catppuccin -Mode light
+& "$env:APPDATA\GHISLER\themes\Set-TCTheme.ps1" -Theme github -Mode light
+& "$env:APPDATA\GHISLER\themes\Set-TCTheme.ps1" -Theme solarized -Mode dark
+& "$env:APPDATA\GHISLER\themes\Set-TCTheme.ps1" -Theme rosepine -Mode dark
+& "$env:APPDATA\GHISLER\themes\Set-TCTheme.ps1" -Theme catppuccin -Mode light
 ```
 
 Or via TC's **Commands -> Start Menu** after step 3.
@@ -99,7 +90,7 @@ TC writes history (panel paths, searches, commands) into `WINCMD.INI` on exit. T
 - Normalises the theme to GitHub Light
 - Working copy is never touched
 
-```bash
+```powershell
 git add WINCMD.INI VERTICAL.BAR tcignore.txt
 git commit -m "update TC config"
 git push
