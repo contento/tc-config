@@ -1,7 +1,7 @@
 #Requires -Version 5.1
 param(
     [Parameter(Mandatory)]
-    [ValidateSet('github', 'rosepine', 'catppuccin')]
+    [ValidateSet('github', 'rosepine', 'catppuccin', 'solarized')]
     [string]$Theme,
     [ValidateSet('light', 'dark')]
     [string]$Mode = 'light'
@@ -51,6 +51,20 @@ $themes = @{
         Cursor=4469297; CursorText=16045773; DarkMode=1
         F =@(8810604, 11526905, 11045875, 10609574, 14017172, 16230091, 8893434, 15517556)
         FD=@(8810604, 11526905, 11045875, 10609574, 14017172, 16230091, 8893434, 15517556)
+    }
+    # Solarized: accent colors are identical in light and dark (by design)
+    # Light bg: #FDF6E3 (base3)  Dark bg: #002B36 (base03 — teal)
+    'solarized-light' = @{
+        Back=14939901; Back2=-1; Fore=8616805; Mark=13798182
+        Cursor=13798182; CursorText=14939901; DarkMode=0
+        F =@(7695960, 35253, 3093212, 39301, 10002730, 12874092, 1461195, 13798182)
+        FD=@(9868419,  35253, 3093212, 39301, 10002730, 12874092, 1461195, 13798182)
+    }
+    'solarized-dark' = @{
+        Back=3549952; Back2=-1; Fore=9868419; Mark=13798182
+        Cursor=4339207; CursorText=10592659; DarkMode=1
+        F =@(9868419, 35253, 3093212, 39301, 10002730, 12874092, 1461195, 13798182)
+        FD=@(9868419, 35253, 3093212, 39301, 10002730, 12874092, 1461195, 13798182)
     }
 }
 
