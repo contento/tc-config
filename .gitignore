@@ -4,3 +4,6 @@
 
 # FTP passwords (if ever stored)
 wcx_ftp.ini
+
+# TC license key
+*.key
