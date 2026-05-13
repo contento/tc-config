@@ -10,7 +10,7 @@ This repo lives at `%APPDATA%\GHISLER` and is kept in sync with the persist loca
 ## Files
 
 | File | Purpose |
-|---|---|
+| --- | --- |
 | `WINCMD.INI` | Main TC config — colors, shortcuts, layout, history |
 | `VERTICAL.BAR` | Vertical toolbar button layout |
 | `tcignore.txt` | Files/dirs TC ignores in listings |
@@ -22,7 +22,7 @@ This repo lives at `%APPDATA%\GHISLER` and is kept in sync with the persist loca
 Six themes are available, grouped into 3 families × light/dark:
 
 | Command | Theme | Mode |
-|---|---|---|
+| --- | --- | --- |
 | `em_ThemeGitHubLight` | GitHub | Light (default) |
 | `em_ThemeGitHubDark` | GitHub | Dark |
 | `em_ThemeRosePineDawn` | Rosé Pine | Light |
@@ -68,7 +68,7 @@ function ConvertTo-COLORREF([string]$hex) {
 ## Color filters (all themes)
 
 | Filter | Pattern |
-|---|---|
+| --- | --- |
 | 1 | `*.exe;*.com;bin*.;plugins;system*.;run*.;*.lnk;*.dll` |
 | 2 | `*.log` |
 | 3 | `*.pdf` |
@@ -80,12 +80,10 @@ function ConvertTo-COLORREF([string]$hex) {
 
 ## Syncing changes
 
-TC writes config on exit. After closing TC, commit from this directory:
+TC writes config on exit. **Before committing `WINCMD.INI`, strip all history sections** — they contain local paths and command history that should not be in version control.
 
-```bash
-git add WINCMD.INI VERTICAL.BAR tcignore.txt
-git commit -m "update TC config"
-git push
-```
+Sections to remove before commit:
 
-> Do not commit `wcx_ftp.ini` — it is gitignored.
+| Section | Content |
+| --- | --- |
+| `
