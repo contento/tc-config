@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "ms-vscode.powershell",
+    "mohsen1.prettify-json",
+    "DavidAnson.vscode-markdownlint"
+  ]
+}
