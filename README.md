@@ -2,6 +2,16 @@
 
 Personal [Total Commander](https://www.ghisler.com/) (x64) configuration with a multi-theme system.
 
+## Background
+
+Total Commander traces a direct lineage through three generations of file manager:
+
+**[Norton Commander](https://en.wikipedia.org/wiki/Norton_Commander)** (1986) — John Socha at Peter Norton Computing introduced the definitive two-panel, keyboard-driven file manager for DOS. Its layout — dual panels, function-key bar, built-in viewer — established what is now formally called the *[Orthodox File Manager](https://en.wikipedia.org/wiki/Orthodox_file_manager)* (OFM) paradigm. Symantec acquired Peter Norton Computing in 1990 and continued the product through the mid-1990s.
+
+**Windows Commander** (1993) — Swiss developer [Christian Ghisler](https://www.ghisler.com/whatsnew.htm) built a Windows counterpart that preserved the OFM model while adding built-in ZIP/ARJ support, a plugin architecture, and deep Windows shell integration. It became one of the most popular shareware utilities of the Windows 9x era.
+
+**[Total Commander](https://en.wikipedia.org/wiki/Total_Commander)** (2002–present) — Microsoft objected to the "Windows" branding, prompting a rename to Total Commander. Ghisler has developed it solo ever since; it remains shareware and is still actively maintained. The `GHISLER` folder in `%APPDATA%` is a direct artifact of that history — TC has used the developer's surname as its config directory since the Windows Commander days.
+
 ## Themes
 
 Eight themes across four families, each with a light and dark variant:
@@ -21,15 +31,27 @@ Themes are switched via a PowerShell script that patches `WINCMD.INI` and restar
 
 ## Installation
 
-**Prerequisite:** [Total Commander x64](https://www.ghisler.com/) — via [Scoop](https://scoop.sh/) or standalone.
+### 1. Install Total Commander
 
-**1. Clone into `$env:APPDATA\GHISLER`**
+Pick any package manager:
+
+```powershell
+winget install Ghisler.TotalCommander                            # winget
+scoop bucket add extras; scoop install totalcommander            # Scoop
+choco install totalcommander                                     # Chocolatey
+```
+
+Or download the installer directly from [ghisler.com](https://www.ghisler.com/).
+
+### 2. Clone this config into `$env:APPDATA\GHISLER`
 
 ```powershell
 git clone https://github.com/contento/tc-config "$env:APPDATA\GHISLER"
 ```
 
-**2. Register the git clean filter** (strips history and normalises to GitHub Light on commit)
+### 3. Register the git clean filter
+
+Strips all history sections and normalises the theme to GitHub Light on every `git add`.
 
 ```powershell
 $script = "$env:APPDATA\GHISLER\scripts\Strip-WincmdHistory.ps1"
@@ -38,12 +60,12 @@ git -C "$env:APPDATA\GHISLER" config filter.strip-tc-history.smudge cat
 git -C "$env:APPDATA\GHISLER" config filter.strip-tc-history.required true
 ```
 
-**3. Register TC user commands**
+### 4. Register TC user commands
 
 Copy or merge `usercmd.ini` from this repo into `$env:USERPROFILE\scoop\persist\totalcommander\usercmd.ini`
 (or wherever your TC `usercmd.ini` lives).
 
-**4. Apply a theme**
+### 5. Apply a theme
 
 ```powershell
 & "$env:APPDATA\GHISLER\themes\Set-TCTheme.ps1" -Theme github -Mode light
@@ -52,7 +74,7 @@ Copy or merge `usercmd.ini` from this repo into `$env:USERPROFILE\scoop\persist\
 & "$env:APPDATA\GHISLER\themes\Set-TCTheme.ps1" -Theme catppuccin -Mode light
 ```
 
-Or via TC's **Commands -> Start Menu** after step 3.
+Or via TC's **Commands -> Start Menu** after step 4.
 
 ## Color filters
 
@@ -71,7 +93,7 @@ All themes share the same 8 file-type color filters, styled per palette:
 
 ## Repository layout
 
-```
+```text
 GHISLER/
   WINCMD.INI                     Main TC config (committed as GitHub Light)
   VERTICAL.BAR                   Vertical toolbar layout
