@@ -80,10 +80,16 @@ function ConvertTo-COLORREF([string]$hex) {
 
 ## Syncing changes
 
-TC writes config on exit. **Before committing `WINCMD.INI`, strip all history sections** — they contain local paths and command history that should not be in version control.
+TC writes config on exit. History sections are stripped automatically on `git add` via a git clean filter (`themes/Strip-WincmdHistory.ps1`) — the working copy TC reads is never touched.
 
-Sections to remove before commit:
+```bash
+git add WINCMD.INI VERTICAL.BAR tcignore.txt
+git commit -m "update TC config"
+git push
+```
 
-| Section | Content |
-| --- | --- |
-| `
+> Do not commit `wcx_ftp.ini` — it is gitignored.
+
+### Sections stripped automatically on commit
+
+`
