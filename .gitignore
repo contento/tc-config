@@ -7,3 +7,6 @@ wcx_ftp.ini
 
 # TC license key
 *.key
+
+# Claude Code auto-generated session settings
+.claude/
