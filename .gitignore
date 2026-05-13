@@ -1,0 +1,6 @@
+# TC session/cache files
+*.bak
+*.tmp
+
+# FTP passwords (if ever stored)
+wcx_ftp.ini
