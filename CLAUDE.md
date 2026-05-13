@@ -5,7 +5,7 @@ Installed via Scoop — active INI is at:
 `%USERPROFILE%\scoop\apps\totalcommander\current\wincmd.ini`
 (hardlinked to `%USERPROFILE%\scoop\persist\totalcommander\wincmd.ini`)
 
-This repo lives at `%APPDATA%\GHISLER` and is kept in sync with the persist location manually.
+This repo lives at `%APPDATA%\GHISLER` — this is also the file TC actively reads and writes. It is the single source of truth for both TC and git.
 
 ## Files
 

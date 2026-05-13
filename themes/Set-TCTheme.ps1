@@ -8,7 +8,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$iniPath = Join-Path $env:USERPROFILE 'scoop\apps\totalcommander\current\wincmd.ini'
+$iniPath = Join-Path $env:APPDATA 'GHISLER\wincmd.ini'
 $tcExe   = Join-Path $env:USERPROFILE 'scoop\apps\totalcommander\current\TOTALCMD64.EXE'
 
 # Color values: COLORREF decimal = B*65536 + G*256 + R
