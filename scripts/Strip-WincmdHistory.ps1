@@ -1,10 +1,10 @@
 # Git clean filter for WINCMD.INI — runs automatically on git add.
-# 1. Strips all history sections (local paths must not reach the repo).
+# 1. Strips history sections and personal sections (local paths must not reach the repo).
 # 2. Normalises theme to GitHub Light — the committed default regardless of
 #    what theme is active locally.
 # Working copy is never touched; only the staged/committed version is cleaned.
 
-$historyPattern = '^\[(Command line history|LeftHistory|RightHistory|SearchText|SearchName|SearchIn|NewFileHistory|MkDirHistory|Selection|RenameTemplates|RenameSearchReplace)\]$'
+$historyPattern = '^\[(Command line history|LeftHistory|RightHistory|SearchText|SearchName|SearchIn|NewFileHistory|MkDirHistory|Selection|RenameTemplates|RenameSearchReplace|DirMenu|lefttabs|righttabs)\]$'
 
 $filterPatterns = @(
     '*.exe;*.com;bin*.;plugins;system*.;run*.;*.lnk;*.dll',

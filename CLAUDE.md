@@ -92,4 +92,17 @@ git push
 
 ### Sections stripped automatically on commit
 
-`
+`[Command line history]` · `[LeftHistory]` · `[RightHistory]` · `[SearchText]` · `[SearchName]` · `[SearchIn]` · `[NewFileHistory]` · `[MkDirHistory]` · `[Selection]` · `[RenameTemplates]` · `[RenameSearchReplace]` · `[DirMenu]` · `[lefttabs]` · `[righttabs]`
+
+The last three (`[DirMenu]`, `[lefttabs]`, `[righttabs]`) hold personal bookmarks and open tabs — they live in the working copy for TC to use but are never committed.
+
+### Re-registering the filter on a new machine
+
+The filter is stored in `.git/config` (local only). After cloning, run once:
+
+```powershell
+$script = "$env:APPDATA\GHISLER\scripts\Strip-WincmdHistory.ps1"
+git config filter.strip-tc-history.clean "powershell -NonInteractive -NoProfile -File `"$script`""
+git config filter.strip-tc-history.smudge cat
+git config filter.strip-tc-history.required true
+```
